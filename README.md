@@ -1,4 +1,4 @@
-# Alan---virtual-assiatant
+# Virtual Assistant - Alan
 required modules:
 gtts(pip install gtts)
 speech_recognition(pip install SpeechRecognition)
