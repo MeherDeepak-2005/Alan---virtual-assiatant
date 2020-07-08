@@ -7,7 +7,7 @@ playsound(pip install playsound)
 pyobjc(pip install PyObjC)
 
 about the project:
- need to say "wake up" to activate
+ needs "Hey Alan"(wake up word) to activate
  the wake word needs to be said everytime you use the service function
  can open netflix and youtube
  can search about a person, thing, meaning of a word
