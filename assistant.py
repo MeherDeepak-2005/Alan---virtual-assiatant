@@ -88,6 +88,3 @@ while(1):
         service(authenticate)
 
     
-
-
-    
