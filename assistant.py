@@ -82,7 +82,7 @@ def service(authenticate):
 time.sleep(1)
 while(1):
     voice_data = record_audio()
-    if there_exists(["wake up"]):
+    if there_exists(["Hey Alan"]):#wake up word
         speak("activated...")
         authenticate = record_audio()
         service(authenticate)
