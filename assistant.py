@@ -6,6 +6,7 @@ import playsound
 import webbrowser
 import os
 import subprocess
+import datetime
 
 r = sr.Recognizer()
 
@@ -27,6 +28,13 @@ def record_audio(ask= False):
         print(voice_data)
 
         return voice_data.lower()
+
+
+
+
+def shutdown():
+    subprocess.call(['osascript', '-e',
+'tell app "System Events" to shut down'])
 
 
 def speak(audio_string):
@@ -72,6 +80,29 @@ def service(authenticate):
         webbrowser.get().open(url)
         speak(f"i found this on the web about {search_term}")
 
+    if if_there(['set alarm','alarm']):
+        set_hour = int(record_audio('what hour should i wake you up'))
+        set_minute = int(record_audio('what minute should i wake you up'))
+        ste_am = record_audio('am or pm')
+        if (ste_am == 'pm'):
+            set_hour = set_hour+ 12
+        while True:
+            if(set_hour == datetime.datetime.now().hour and
+            set_minute == datetime.datetime.now().minute):
+                set_timer = speak('wake up')
+                print(set_timer)
+                if if_there(['kill alarm','set alarm']):
+                    speak('killing alarm')
+                    break
+
+
+    if if_there(['shutdown']):
+        speak('logging out')
+        shutdown()
+
+
+
+
     if if_there(['goodbye','bye']):
         bye = [f"going offline",f"bye","it was nice to meet you",f"have a nice day"]
         breakpoint_2 = bye[random.randint(0,len(bye)-1)]
@@ -82,9 +113,12 @@ def service(authenticate):
 time.sleep(1)
 while(1):
     voice_data = record_audio()
-    if there_exists(["Hey Alan"]):#wake up word
+    if there_exists(["wake up"]):
         speak("activated...")
         authenticate = record_audio()
         service(authenticate)
+
+    
+
 
     
